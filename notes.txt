@@ -1,0 +1,15 @@
+1.- Install MongoDB
+2.- Run command line
+3.- use test;
+4.- db.createCollection("notes");
+    db.createCollection("users");
+    db.users.insert( { username: "john", email: "john@test.test" } );
+5.- 
+    use test;
+    db.createUser({user: "notesuser",pwd: "password", roles: [{ role: "readWrite", db: "test" }]});
+    
+    6.- when finish
+    use test;
+    db.notes.drop();
+    db.users.drop()
+    
