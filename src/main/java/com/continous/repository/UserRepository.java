@@ -9,5 +9,7 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface UserRepository extends ReactiveMongoRepository<User, String> {
-    Flux<User> findByUsername(String name);
+    Flux<User> findByUsername(String username);
+ 
 }
+

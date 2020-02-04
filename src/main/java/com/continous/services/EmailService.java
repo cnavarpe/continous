@@ -1,9 +1,11 @@
 package com.continous.services;
 
+import com.continous.model.EmailData;
+
+import reactor.core.publisher.Mono;
+
 public interface EmailService {
 
-    void sendMessage(String to, String subject, String text);
-
-    void sendModificationEmail(String username, String string, String string2);
+    Mono<EmailData> createEmail(EmailData emailData);
 
 }

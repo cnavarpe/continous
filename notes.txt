@@ -3,7 +3,9 @@
 3.- use test;
 4.- db.createCollection("notes");
     db.createCollection("users");
+    db.users.createIndex( { "username": 1 }, { unique: true } );
     db.users.insert( { username: "john", email: "john@test.test" } );
+    ##show with db.users.find();
 5.- 
     use test;
     db.createUser({user: "notesuser",pwd: "password", roles: [{ role: "readWrite", db: "test" }]});

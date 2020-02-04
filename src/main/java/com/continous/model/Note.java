@@ -18,6 +18,14 @@ public class Note {
     @Size(max = 50)
     private String username;
 
+    public Note() {
+    }
+
+    public Note(@NotBlank @Size(max = 50) String contents, @NotBlank @Size(max = 50) String username) {
+        this.contents = contents;
+        this.username = username;
+    }
+
     public String getId() {
         return id;
     }

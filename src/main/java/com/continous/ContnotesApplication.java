@@ -9,7 +9,7 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 @EnableReactiveMongoRepositories
 @EnableWebFlux
 public class ContnotesApplication {
-    
+  
     public static void main(String[] args) {
         SpringApplication.run(ContnotesApplication.class, args);
     }

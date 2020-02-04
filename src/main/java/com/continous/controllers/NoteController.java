@@ -24,11 +24,12 @@ public class NoteController {
 
     @Autowired
     private NoteService noteService;
-
+  
     @GetMapping("/alive")
     public Mono<String> isAlive() {
         return Mono.just("Application is running!!!");
     }
+    
 
     @GetMapping(value = "/notes", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<Note> listNotes() {

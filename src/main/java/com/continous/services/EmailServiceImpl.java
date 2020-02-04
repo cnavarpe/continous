@@ -8,9 +8,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.continous.model.User;
+import com.continous.model.EmailData;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -18,13 +18,9 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    @Autowired
-    private UserService userService;
-
     private ScheduledExecutorService executorServices = Executors.newScheduledThreadPool(3);
 
-    @Override
-    public void sendMessage(String toEmail, String subject, String text) {
+    private void sendMessage(String toEmail, String subject, String text) {
 
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setFrom("test@test.com");
@@ -44,10 +40,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendModificationEmail(String username, String to, String body) {
-        Flux<User> user = userService.findByUsername(username);
-        user.doOnNext(usr -> {
-            sendMessage(usr.getEmail(), to, body);
-        });
+    public Mono<EmailData> createEmail(EmailData emailData) {
+        sendMessage(emailData.getToEmail(), emailData.getSubject(), emailData.getText());
+        return Mono.just(emailData);
     }
 }
